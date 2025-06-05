@@ -1,0 +1,68 @@
+.register-container {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 36px 28px 28px 28px;
+  background: #f8fafc;
+  border-radius: 10px;
+  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.10);
+  text-align: center;
+}
+
+.register-container h2 {
+  color: #2c3e50;
+  margin-bottom: 24px;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+.register-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"] {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #bfc9d1;
+  border-radius: 6px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.register-container input:focus {
+  border: 1.5px solid #007bff;
+}
+
+.register-container button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 0;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.register-container button:hover {
+  background: #0056b3;
+}
+
+.register-container .message {
+  margin-top: 12px;
+  color: #d32f2f;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .register-container {
+    max-width: 98vw;
+    padding: 18px 4vw;
+  }
+  .register-container h2 {
+    font-size: 1.2rem;
+  }
+}

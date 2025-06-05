@@ -1,0 +1,111 @@
+.login-container {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 36px 28px 28px 28px;
+  background: #f8fafc;
+  border-radius: 10px;
+  box-shadow: 0 4px 24px rgba(44, 62, 80, 0.10);
+  text-align: center;
+}
+
+.login-container h2 {
+  color: #2c3e50;
+  margin-bottom: 24px;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.login-container input[type="email"],
+.login-container input[type="password"] {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #bfc9d1;
+  border-radius: 6px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.login-container input[type="email"]:focus,
+.login-container input[type="password"]:focus {
+  border: 1.5px solid #007bff;
+}
+
+.login-container button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 0;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.login-container button:hover {
+  background: #0056b3;
+}
+
+.login-container .message {
+  margin-top: 12px;
+  color: #d32f2f;
+  font-weight: 500;
+}
+
+.forgot-password {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.forgot-password a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: auto;
+  margin-right: 8px;
+}
+
+.auth-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.auth-links a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.auth-links a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .login-container {
+    max-width: 98vw;
+    padding: 18px 4vw;
+  }
+  .login-container h2 {
+    font-size: 1.2rem;
+  }
+}

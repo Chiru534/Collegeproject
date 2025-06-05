@@ -1,0 +1,127 @@
+.result-container {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.input-group {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+}
+
+.input-group button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+}
+
+.input-group button:hover {
+  background-color: #0056b3;
+}
+
+.result-details {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
+.result-details h2 {
+  margin-bottom: 10px;
+}
+
+.result-details h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #007bff;
+}
+
+.result-details table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: #fafbfc;
+}
+
+.result-details th,
+.result-details td {
+  border: 1px solid #e0e0e0;
+  padding: 10px 8px;
+  text-align: left;
+}
+
+.result-details th {
+  background-color: #f1f3f6;
+  color: #333;
+  font-weight: 600;
+}
+
+.result-details tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+.result-details tr:hover {
+  background-color: #e6f0fa;
+}
+
+.all-results .semester-block {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.no-data-message {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  color: #6c757d;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.75rem;
+  border: 1px solid #dee2e6;
+}
+
+tfoot td {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+@media (max-width: 700px) {
+  .result-container {
+    width: 98%;
+    padding: 8px;
+  }
+  .result-details table,
+  .result-details th,
+  .result-details td {
+    font-size: 13px;
+    padding: 6px 4px;
+  }
+}
