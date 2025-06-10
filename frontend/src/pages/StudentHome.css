@@ -1,0 +1,84 @@
+.student-home {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    position: relative;
+    padding-top: 0px; /* leave space for header & profile link */
+}
+
+.student-home-header {
+    position: relative; /* Establishes a positioning context for the profile link */
+    background-color: #050505;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.student-home-main {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    margin: 20px;
+}
+
+ h4 {
+    width: 100%;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.college-logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 8px;
+}
+
+.student-home-card {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.student-home-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.student-home-footer {
+    background-color: #f9f9f9;
+    text-align: center;
+    padding: 10px;
+}
+
+.developer-info h2 {
+    text-align: center;
+    margin-top: 40px;
+    font-weight: bold;
+}
+.developer-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+.developer-images img {
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+    border-radius: 50%; /* Makes the images circular */
+    border: 2px solid #ddd; /* Optional border for better visibility */
+    transition: transform 0.2s ease;
+}

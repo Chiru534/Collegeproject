@@ -6,10 +6,23 @@
   border: 1px solid #ddd;
   border-radius: 4px;
 }
+.result-container h1 {
+  text-align: center;
+  color: #333;
+}
 
 .input-group {
   display: flex;
   margin-bottom: 20px;
+}
+select {
+    display: block;
+    margin: 0 auto;
+}
+label {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .input-group input {

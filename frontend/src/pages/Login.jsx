@@ -25,7 +25,7 @@ function Login({ onLogin }) {
         }));
         setMessage('Login successful!');
         if (onLogin) onLogin(res.data.user.roll);
-        navigate('/result');
+        navigate('/student-home'); // Redirect to student home page
       } else {
         setMessage('Login failed: ' + (res.data.error || 'Unknown error'));
       }

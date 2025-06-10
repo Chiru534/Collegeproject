@@ -1,0 +1,53 @@
+.student-updates-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+.student-updates-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.updates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 80px;
+}
+
+.update-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 35px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
+}
+
+.update-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.update-title {
+    text-align: center;
+  margin: 0 0 10px;
+  color: #007BFF;
+}
+
+.update-description {
+    text-align: center;
+  margin: 0 0 10px;
+  color: #555;
+}
+
+.update-date {
+    text-align: center;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  font-size: 0.9em;
+  color: #999;
+}

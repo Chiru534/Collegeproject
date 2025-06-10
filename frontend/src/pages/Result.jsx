@@ -138,9 +138,9 @@ function Result() {
           />
         </div>
       )}
-
-      <div style={{ marginBottom: '16px' }}>
-        <label htmlFor="semester-select"><strong>Select Semester: </strong></label>
+      
+      <div style={{ marginBottom: '16px', }}>
+        <label htmlFor="semester-select"><strong >Select Semester: </strong></label>
         <select
           id="semester-select"
           value={selectedSemester}

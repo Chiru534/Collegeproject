@@ -1,27 +1,20 @@
 .home-container {
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  padding: 20px;
   text-align: center;
   font-family: Arial, sans-serif;
 }
 
 .top-header-container {
-  background-color: #f2f2f2;
+  background-color: #007bff;
+  color: #fff;
   padding: 20px;
-  border-bottom: 2px solid #ddd;
-}
-
-.top-header-container img {
-  max-width: 100px;
-  display: block;
-  margin: 0 auto 10px;
 }
 
 .top-header {
   font-size: 2rem;
   margin: 0;
-  color: #333;
+  color: white;
 }
 
 .home-actions {
@@ -54,4 +47,46 @@
   font-size: 1.2rem;
   color: #666;
   margin-top: 20px;
+}
+
+.college-logo {
+  display: block;
+  margin: 10px auto;
+  width: 150px; /* Adjust as needed */
+  max-width: 100%;
+  height: auto;
+}
+
+.boxes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 100px;
+  margin-top: 20px;
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.home-footer {
+  margin-top: 40px;
+  padding: 2px;
+  background-color: #f9f9f9;
 }
