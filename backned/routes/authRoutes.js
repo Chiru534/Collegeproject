@@ -2,6 +2,7 @@ import express from 'express';
 import User from '../Models/user.js';
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
+import Update from '../Models/update.js';  // Make sure to import the Update model
 
 const router = express.Router();
 
@@ -84,6 +85,39 @@ router.post('/reset-password/:token', validateResetRequest, async (req, res) => 
     console.error('Password reset error:', error);
     res.status(400).json({
       error: error.message || 'Password reset failed'
+    });
+  }
+});
+
+router.post('/upload-updates', async (req, res) => {
+  const { title, description, date } = req.body;
+  
+  // Validate required fields
+  if (!title || !description || !date) {
+    return res.status(400).json({
+      success: false,
+      error: 'Title, description, and date are required'
+    });
+  }
+
+  try {
+    // Create a new update document using the Update model
+    const newUpdate = await Update.create({
+      title,
+      description,
+      date
+    });
+    
+    // Respond with the newly created update document
+    return res.status(201).json({
+      success: true,
+      data: newUpdate
+    });
+  } catch (error) {
+    console.error('Error creating update:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'Server error'
     });
   }
 });

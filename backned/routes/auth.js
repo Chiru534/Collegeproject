@@ -5,11 +5,18 @@ import User from '../Models/user.js';
 import Result from '../Models/result.js';
 import crypto from 'crypto';
 import bcrypt from 'bcrypt';
+import update from '../Models/update.js';
 import dotenv from 'dotenv';
+import multer from 'multer';
 
 dotenv.config();
 
 const router = express.Router();
+const upload = multer();
+
+// Ensure body parsing is enabled (if not enabled globally in your server file)
+router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
 
 // Update nodemailer configuration for better reliability
 const transporter = nodemailer.createTransport({
@@ -18,8 +25,8 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true, // Use SSL
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS // Use App Password, not regular password
+    user: 'leelamohankurmapu2004@gmail.com',
+    pass: 'nbmj nfgt etno ogci'   // Use App Password, not regular password
   },
   tls: {
     rejectUnauthorized: false
@@ -415,6 +422,171 @@ router.get('/results/:roll/:semester', async (req, res) => {
     res.status(500).json({
       success: false,
       error: 'Failed to fetch results'
+    });
+  }
+});
+
+// ----- Added Update Route (Upload Updates) -----
+// This route creates a new update and sends an email notification to all users
+router.post('/upload-updates', upload.none(), async (req, res) => {
+  const { title, description, date } = req.body;
+
+  // Validate required fields
+  if (!title || !description || !date) {
+    return res.status(400).json({
+      success: false,
+      error: 'Title, description, and date are required'
+    });
+  }
+
+  try {
+    // Create a new update document using the update model
+    const newUpdate = await update.create({
+      title,
+      description,
+      date
+    });
+    
+    // Fetch all users' emails (adjust the query as needed)
+    const users = await User.find({}, 'email');
+    const recipientEmails = users
+      .map(user => user.email)
+      .filter(Boolean)
+      .join(',');
+
+    // Setup mail options for email notification
+    const mailOptions = {
+      from: transporter.options.auth.user,
+      to: recipientEmails,
+      subject: 'New Update Posted',
+      text: `A new update has been posted:
+      
+Title: ${newUpdate.title}
+Description: ${newUpdate.description}
+Date: ${newUpdate.date}
+
+Regards,
+Your Application`
+    };
+
+    // Send email notification
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        console.error('Error sending email:', err);
+      } else {
+        console.log('Email sent:', info.response);
+      }
+    });
+
+    // Respond with the newly created update document
+    return res.status(201).json({
+      success: true,
+      data: newUpdate
+    });
+  } catch (error) {
+    console.error('Error creating update:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'Server error'
+    });
+  }
+});
+
+// ----- Get Updates Route -----
+// This route retrieves all update documents from the database
+router.get('/updates', async (req, res) => {
+  try {
+    const updates = await update.find({}).sort({ createdAt: -1 });
+    return res.status(200).json({
+      success: true,
+      data: updates
+    });
+  } catch (error) {
+    console.error('Error fetching updates:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'Server error'
+    });
+  }
+});
+
+// Get user profile
+router.get('/profile', async (req, res) => {
+  try {
+    // For example, fetch the user by a specific criteria
+    const user = await User.findOne({});
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        error: 'Profile not found'
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      data: {
+        roll: user.roll,
+        email: user.email
+      }
+    });
+  } catch (error) {
+    console.error('Error fetching profile:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'Server error'
+    });
+  }
+});
+
+// Admin routes
+// ----- Get Students Route -----
+// This route retrieves all student users
+router.get('/students', async (req, res) => {
+  try {
+    // Query for all students
+    // Optionally filter by isAdmin flag if needed: { isAdmin: false }
+    const students = await User.find({});
+    return res.status(200).json({
+      success: true,
+      data: students
+    });
+  } catch (error) {
+    console.error('Error fetching students:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'Server error'
+    });
+  }
+});
+
+// ----- Update Student Route -----
+// This route updates a student's data
+router.put('/students/:id', async (req, res) => {
+  try {
+    const studentId = req.params.id;
+    const updateData = req.body; // Expect fields like name, email, roll
+    
+    // Find the student by ID and update with validation (new option returns updated document)
+    const updatedStudent = await User.findByIdAndUpdate(studentId, updateData, {
+      new: true,
+      runValidators: true
+    });
+    
+    if (!updatedStudent) {
+      return res.status(404).json({
+        success: false,
+        error: 'Student not found'
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: updatedStudent
+    });
+  } catch (error) {
+    console.error('Error updating student:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'Server error'
     });
   }
 });

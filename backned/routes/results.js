@@ -3,33 +3,34 @@ import { getStudentModel } from '../Models/student.js';
 
 const router = express.Router();
 
-// GET result by semester and roll
-router.get('/api/results/:semester/:roll', async (req, res) => {
+// GET result by roll and semester
+router.get('/auth/results/:roll/:semester', async (req, res) => {
   try {
-    const { semester, roll } = req.params;
-    console.log('Fetching result for semester:', semester, 'roll:', roll);
+    const { roll, semester } = req.params;
+    console.log('Requesting results for:', { roll, semester }); // Debug log
 
-    // Get the semester-specific model
-    const SemesterModel = getStudentModel(semester);
+    // Get model for the specific semester collection
+    const collectionName = `semester_${semester}`;
+    const StudentModel = getStudentModel(collectionName);
     
-    // Find student by roll in the semester collection
-    const student = await SemesterModel.findOne({ roll });
+    // Find the student's result in the semester-specific collection
+    const result = await StudentModel.findOne({ roll });
     
-    if (!student) {
-      console.log('No result found for roll:', roll, 'semester:', semester);
+    if (!result) {
+      console.log(`No results found in ${collectionName} for roll ${roll}`);
       return res.status(404).json({ 
-        message: `No result found for roll ${roll} in semester ${semester}` 
+        error: `No results found for roll ${roll} in semester ${semester}` 
       });
     }
-
-    console.log('Found result for roll:', roll, 'semester:', semester);
-    res.json(student);
+    
+    console.log(`Found result in ${collectionName} for roll ${roll}`);
+    res.json(result);
 
   } catch (error) {
     console.error('Error fetching result:', error);
     res.status(500).json({ 
-      message: 'Error fetching result',
-      error: error.message 
+      error: 'Failed to fetch results',
+      details: error.message 
     });
   }
 });
